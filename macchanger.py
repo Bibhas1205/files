@@ -1,8 +1,12 @@
 from time import sleep
 from os import system
 from random import randint
+import sys
+if(len(sys.argv)!=2):
+	echo "Please use as python3 ",sys.argv[0]," <network_interface>"
+	exit()
 
-pmac="ifconfig wlan0 hw ether "
+pmac="ifconfig "+sys.argv[1]+" hw ether "
 
 def Rand():
 	n=randint(0,15)
@@ -18,9 +22,9 @@ def Vendor():
 	return vendor[randint(0,len(vendor)+1)]
 while True:
 	Mac=pmac+Vendor()+":"+Device()
-	system("ifconfig wlp1s0 down")
+	system("ifconfig "+sys.argv[1]+" down")
 	system(Mac)
-	system("ifconfig wlp1s0 up")
+	system("ifconfig "+sys.argv[1]+" up")
 	#system("clear")
 	#print("TRYING TO CHANGE THE MAC-ADDRESS..")
 	#print("\nYour Current Mac-Address : "+Vendor()+":"+Device(),end='')
