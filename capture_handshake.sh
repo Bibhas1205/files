@@ -1,6 +1,6 @@
-if [ $# -ne 2 ]
+if [ $# -ne 3 ]
 then
-echo "Please Enter BSSID CHANNEL_ID"
+echo "Please Enter <network_interface> <BSSID> <CHANNEL_ID>"
 else
-sudo airodump-ng -c $2 --bssid $1 --write newcapture wlan0
+sudo airodump-ng -c $3 --bssid $2 --write newcapture $1
 fi
