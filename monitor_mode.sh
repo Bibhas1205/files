@@ -1,18 +1,18 @@
-if [ $# -ne 1 ]
+if [ $# -ne 2 ]
 then
-	echo "You must give a argument monitor/mannage"
+	echo "You must give 2 arguments <network_interface> <monitor/mannage>"
 else
-	if [ $1 = "monitor" ]
+	if [ $2 = "monitor" ]
 	then
-		ifconfig wlan0 down
-		iwconfig wlan0 mode monitor
-		ifconfig wlan0 up
-		airodump-ng wlan0
-	elif [ $1 = "mannage" ]
+		ifconfig $1 down
+		iwconfig $1 mode monitor
+		ifconfig $1 up
+		airodump-ng $1
+	elif [ $2 = "mannage" ]
 	then
-		ifconfig wlan0 down
-		iwconfig wlan0 mode mannage
-		ifconfig wlan0 up
+		ifconfig $1 down
+		iwconfig $1 mode mannage
+		ifconfig $1 up
 	else
 		echo "You choose a wrong argument please choose right"
 	fi
