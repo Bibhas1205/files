@@ -1,0 +1,12 @@
+get_local_ip() {
+    local_ip=$(ifconfig | grep -oE 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | awk '{print $2}')
+    echo "Local IP Address: $local_ip"
+}
+
+get_global_ip() {
+    global_ip=$(curl -s https://api64.ipify.org?format=text)
+    echo "Global IP Address: $global_ip"
+}
+
+get_local_ip
+get_global_ip

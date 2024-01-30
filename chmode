@@ -1,0 +1,19 @@
+if [ $# -ne 2 ]
+then
+	echo "You must give 2 arguments <network_interface> <monitor/mannage>"
+else
+	if [ $2 = "monitor" ]
+	then
+		sudo ifconfig $1 down
+		sudo iwconfig $1 mode monitor
+		sudo ifconfig $1 up
+		sudo airodump-ng $1
+	elif [ $2 = "mannage" ]
+	then
+		sudo ifconfig $1 down
+		sudo iwconfig $1 mode mannage
+		sudo ifconfig $1 up
+	else
+		echo "You choose a wrong argument please choose right"
+	fi
+fi

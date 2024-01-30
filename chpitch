@@ -1,0 +1,30 @@
+from pydub import AudioSegment
+from pydub.playback import play
+import sys
+
+
+if(len(sys.argv)!=3):
+    print("Use python3 ",sys.argv[0]," <input mp3 file> <pitch rate 0.0-3.0>")
+    exit()
+
+# Function to convert MP3 to WAV
+def mp3_to_wav(mp3_file, wav_file):
+    sound = AudioSegment.from_mp3(mp3_file)
+    sound.export(wav_file, format="wav")
+
+# Convert MP3 to WAV
+mp3_file = sys.argv[1]  # Replace this with your input MP3 file path
+wav_file = "output_file.wav"  # Replace this with the desired output WAV file path
+mp3_to_wav(mp3_file, wav_file)
+
+# Load the sound as an AudioSegment
+sound = AudioSegment.from_file(wav_file)
+
+# Change the pitch (decrease by 20%) to simulate old man's voice
+pitch_shift = float(sys.argv[2])  # Decrease pitch by 20% (change this value as desired)
+new_sound = sound._spawn(sound.raw_data, overrides={
+    "frame_rate": int(sound.frame_rate * pitch_shift)
+})
+
+# Play the new sound with the changed pitch
+play(new_sound)

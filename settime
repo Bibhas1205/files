@@ -1,0 +1,9 @@
+#This is a command name settime for those OS which has a problem to fetch current datetime
+#This command sends a request to my API and collect current datetime and set it fot local compputer
+#The server is hosts on 000webhost server.
+#programmer name : Bibhas Das
+#Email: bibhasdas1205@gmail.com
+
+datetime=$(curl -d "datetime=1" http://yamata.000webhostapp.com/time/ |awk -F '"' '{print $4}')
+sudo timedatectl set-time "$datetime"
+echo "Date-Time updated successfully"

